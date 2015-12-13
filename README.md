@@ -1,1 +1,1 @@
-# komunikator
+# komunikator - z kluczem SSH
