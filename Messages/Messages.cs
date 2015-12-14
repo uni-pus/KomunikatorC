@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Messages
 {
-    class Messages
+    public class Messages
     {
         private string id;
-        public String Id { get; }
+        public string Id { get { return id; } }
         public string to;
         public string from;
         public string body;

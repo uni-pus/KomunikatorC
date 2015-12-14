@@ -11,7 +11,7 @@ namespace Messages
     /// klasa odpowiedzialna za generowanie wiadomosci i ich dekodowanie
     /// bez konstruktora, zbior metod
     /// </summary>
-    class MessageGenerator
+    public class MessageGenerator
     {
         public Messages dekoduj(byte[] data)
         {
@@ -21,13 +21,13 @@ namespace Messages
             xmlmessage = Encoding.UTF8.GetString(data);
             xmlmessage = xmlmessage.Trim();
             doc.LoadXml(xmlmessage);
-
-            Messages mes = new Messages(doc.DocumentElement.SelectSingleNode("message/id").InnerText);
-            mes.body = doc.DocumentElement.SelectSingleNode("message/body").InnerText;
-            mes.to = doc.DocumentElement.SelectSingleNode("message/to").InnerText;
-            mes.from = doc.DocumentElement.SelectSingleNode("message/from").InnerText;
-            mes.body = doc.DocumentElement.SelectSingleNode("message/body").InnerText;
-            mes.stringToKomenda(doc.DocumentElement.SelectSingleNode("message/body").InnerText);
+            string id = doc.DocumentElement.SelectSingleNode("/message/id").InnerText;
+            Messages mes = new Messages(id);
+            mes.body = doc.DocumentElement.SelectSingleNode("/message/body").InnerText;
+            mes.to = doc.DocumentElement.SelectSingleNode("/message/to").InnerText;
+            mes.from = doc.DocumentElement.SelectSingleNode("/message/from").InnerText;
+            mes.body = doc.DocumentElement.SelectSingleNode("/message/body").InnerText;
+            mes.stringToKomenda(doc.DocumentElement.SelectSingleNode("/message/body").InnerText);
             return mes;
         }
 
