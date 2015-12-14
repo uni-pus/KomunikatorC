@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Klient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="MainWindow" Height="194.178" Width="323.63">
+    <Grid Margin="0,0,2,-20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="339*"/>
+            <ColumnDefinition Width="178*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="38" Margin="95,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="hasloTextBox" HorizontalAlignment="Left" Height="43" Margin="95,53,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="88"/>
+        <Button x:Name="zalogujbutton" Content="Zaloguj" HorizontalAlignment="Left" Margin="34,101,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="loginlabel" Content="login:" HorizontalAlignment="Left" Margin="12,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="haslolabel" Content="haslo:" HorizontalAlignment="Left" Margin="12,51,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
