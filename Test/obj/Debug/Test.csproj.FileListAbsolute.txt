@@ -1,0 +1,4 @@
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\Komunikator\Test\bin\Debug\Test.dll
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\Komunikator\Test\bin\Debug\Test.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\Komunikator\Test\obj\Debug\Test.dll
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\Komunikator\Test\obj\Debug\Test.pdb

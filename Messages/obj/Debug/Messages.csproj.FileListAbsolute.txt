@@ -1,0 +1,12 @@
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\Komunikator\Messages\bin\Debug\Messages.exe.config
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\Komunikator\Messages\bin\Debug\Messages.exe
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\Komunikator\Messages\bin\Debug\Messages.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\Komunikator\Messages\obj\Debug\Messages.csprojResolveAssemblyReference.cache
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\Komunikator\Messages\obj\Debug\Messages.exe
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\Komunikator\Messages\obj\Debug\Messages.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Messages\bin\Debug\Messages.dll.config
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Messages\bin\Debug\Messages.dll
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Messages\bin\Debug\Messages.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Messages\obj\Debug\Messages.csprojResolveAssemblyReference.cache
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Messages\obj\Debug\Messages.dll
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Messages\obj\Debug\Messages.pdb

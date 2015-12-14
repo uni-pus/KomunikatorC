@@ -1,0 +1,12 @@
+c:\users\ieuser\documents\visual studio 2015\Projects\Komunikator\Komunikator\bin\Debug\Komunikator.exe.config
+c:\users\ieuser\documents\visual studio 2015\Projects\Komunikator\Komunikator\bin\Debug\Komunikator.exe
+c:\users\ieuser\documents\visual studio 2015\Projects\Komunikator\Komunikator\bin\Debug\Komunikator.pdb
+c:\users\ieuser\documents\visual studio 2015\Projects\Komunikator\Komunikator\obj\Debug\Komunikator.exe
+c:\users\ieuser\documents\visual studio 2015\Projects\Komunikator\Komunikator\obj\Debug\Komunikator.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\Komunikator\Komunikator\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Komunikator\bin\Debug\Komunikator.exe.config
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Komunikator\obj\Debug\Komunikator.exe
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Komunikator\obj\Debug\Komunikator.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Komunikator\bin\Debug\Komunikator.exe
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Komunikator\bin\Debug\Komunikator.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Komunikator\obj\Debug\Server.csprojResolveAssemblyReference.cache
