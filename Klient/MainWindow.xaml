@@ -11,9 +11,9 @@
             <ColumnDefinition Width="339*"/>
             <ColumnDefinition Width="178*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="38" Margin="95,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="88"/>
-        <TextBox x:Name="hasloTextBox" HorizontalAlignment="Left" Height="43" Margin="95,53,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="88"/>
-        <Button x:Name="zalogujbutton" Content="Zaloguj" HorizontalAlignment="Left" Margin="34,101,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="23" Margin="80,12,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="hasloTextBox" HorizontalAlignment="Left" Height="21" Margin="80,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="88"/>
+        <Button x:Name="zalogujbutton" Content="Zaloguj" HorizontalAlignment="Left" Margin="34,101,0,0" VerticalAlignment="Top" Width="75" Click="zalogujbutton_Click"/>
         <Label x:Name="loginlabel" Content="login:" HorizontalAlignment="Left" Margin="12,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="haslolabel" Content="haslo:" HorizontalAlignment="Left" Margin="12,51,0,0" VerticalAlignment="Top"/>
 

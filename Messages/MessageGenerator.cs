@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Messages
+namespace MessagesSpace
 {
     /// <summary>
     /// klasa odpowiedzialna za generowanie wiadomosci i ich dekodowanie
-    /// bez konstruktora, zbior metod
+    /// bez konstruktora, zbior metod statycznych
     /// </summary>
     public class MessageGenerator
     {
-        public Messages dekoduj(byte[] data)
+        static public Messages dekoduj(byte[] data)
         {
             string xmlmessage;
 
@@ -27,11 +27,12 @@ namespace Messages
             mes.to = doc.DocumentElement.SelectSingleNode("/message/to").InnerText;
             mes.from = doc.DocumentElement.SelectSingleNode("/message/from").InnerText;
             mes.body = doc.DocumentElement.SelectSingleNode("/message/body").InnerText;
-            mes.stringToKomenda(doc.DocumentElement.SelectSingleNode("/message/body").InnerText);
+            mes.stringToKomenda(doc.DocumentElement.SelectSingleNode("/message/komenda").InnerText);
+            mes.Czas = doc.DocumentElement.SelectSingleNode("/message/czas").InnerText;
             return mes;
         }
 
-        public byte[] koduj(Messages mes)
+        static public byte[] koduj(Messages mes)
         {
             //http://www.devx.com/tips/Tip/21168
             XmlDocument XmlDoc = new XmlDocument();
@@ -57,6 +58,10 @@ namespace Messages
 
             parendNode = XmlDoc.CreateElement("komenda");
             parendNode.InnerText = mes.komenda.ToString();
+            rootNode.AppendChild(parendNode);
+
+            parendNode = XmlDoc.CreateElement("czas");
+            parendNode.InnerText = mes.Czas;
             rootNode.AppendChild(parendNode);
 
             byte[] bajty = Encoding.Default.GetBytes(XmlDoc.OuterXml);

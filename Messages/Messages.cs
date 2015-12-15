@@ -5,16 +5,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Messages
+namespace MessagesSpace
 {
     public class Messages
     {
         private string id;
         public string Id { get { return id; } }
+
+        public string Czas
+        {
+            get
+            {
+                return czas.ToString();
+            }
+
+            set
+            {
+                czas = Convert.ToDateTime(value);
+            }
+        }
+
+        public void stempelCzasu()
+        {
+            czas = DateTime.Now;
+        }
         public string to;
         public string from;
         public string body;
         public Komendy komenda;
+        private DateTime czas;
         public Messages(string from, Komendy komenda)
         {
             id = Guid.NewGuid().ToString();
@@ -41,15 +60,15 @@ namespace Messages
         }
         public void stringToKomenda(string komendaString)
         {
-            switch(komendaString.ToUpper())
+            switch(komendaString)
             {
-                case "LOGIN":
+                case "Login":
                     komenda = Komendy.Login;
                     break;
-                case "LOGOUT":
+                case "Logout":
                     komenda = Komendy.Logout;
                     break;
-                case "TEXTMESSAGE":
+                case "TextMessage":
                     komenda = Komendy.TextMessage;
                     break;
                 default:
@@ -57,5 +76,6 @@ namespace Messages
                     break;
             }
         }
+
     }
 }
