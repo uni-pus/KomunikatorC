@@ -9,8 +9,8 @@ namespace Klient
 {
     class NetworkConfig
     {
-        private string ip = @"127.0.0.1";
-        private string port = @"8888";
+        public string ip = @"127.0.0.1";
+        public string port = @"8888";
         public TcpClient client;
 
         public string Ip

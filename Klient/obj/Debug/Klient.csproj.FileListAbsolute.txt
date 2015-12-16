@@ -28,3 +28,5 @@ C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\K
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Klient\obj\Debug\Klient.csproj.GenerateResource.Cache
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Klient\bin\Debug\Messages.dll
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Klient\bin\Debug\Messages.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Klient\obj\Debug\OknoKomunikatora.g.cs
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\Klient\obj\Debug\OknoKomunikatora.baml

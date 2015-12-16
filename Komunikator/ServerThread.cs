@@ -6,12 +6,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
+using MessagesSpace;
+
 namespace Server
 {
     class ServerThread : BaseThread
     {
         private TcpClient client;
         public TcpClient Client() { return client; }
+        private string nick;
 
         public ServerThread(TcpClient client)
         {
@@ -25,28 +28,28 @@ namespace Server
 
         public void start()
         {
+            //byte[] bytes = new byte[256];
+            //string data = null;
             //http://csharp.net-informations.com/communications/csharp-multi-threaded-server-socket.htm
+            //https://msdn.microsoft.com/en-us/library/system.net.sockets.tcplistener%28v=vs.110%29.aspx
             log("Podlaczono nowego klienta");
             NetworkStream ntStream = client.GetStream();
-            StringBuilder sb = new StringBuilder();
+            int i;
+            //StringBuilder sb = new StringBuilder();
+            Messages data;
             byte[] bytesFrom = new byte[10025];
-            string dataFromClient = null;
+ //           string dataFromClient = null;
             try {
                 while(true)
                 {
+                    i = ntStream.Read(bytesFrom, 0, bytesFrom.Length);
                     try
                     {
-                        ntStream.Read(bytesFrom, 0, (int)client.ReceiveBufferSize);
-                        dataFromClient = System.Text.Encoding.ASCII.GetString(bytesFrom);
-                        dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
-                        Console.WriteLine(" >> " + "From client-" + dataFromClient);
-                        /*
-                        
-                        ntStream.BeginRead(bytesFrom,0,(int)client.ReceiveBufferSize,);
+                        data = MessageGenerator.dekoduj(bytesFrom);
 
-    */
-                        //string dataFromClient = Encoding.ASCII.GetString(bytesFrom);
                         log(" >> Data from client - ");// + dataFromClient);
+                        string[] str = new string[] {data.from, data.komenda.ToString(), data.body };
+                        log("{0}, komenda: {1}, body: \"{2}\" ",str);
                         //StreamWriter out_ = new StreamWriter(client.GetStream());
                         //BufferedStream in_ = new BufferedStream(); 
                     }
@@ -64,13 +67,17 @@ namespace Server
             }
 
             log("klient rozlaczony");
-            Program.watki.Remove(this);
+            //Program.watki.Remove(this);
 
         }
 
         public void log(String _string)
         {
             Console.WriteLine(_string);
+        }
+        public void log(String _string, string[] var)
+        {
+            Console.WriteLine(_string, var);
         }
     }
 }

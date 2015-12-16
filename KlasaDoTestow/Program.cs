@@ -32,7 +32,7 @@ namespace KlasaDoTestow
             }
             else
                 Console.WriteLine("BLAD");
-            Thread.Sleep(2);
+            Thread.Sleep(4);
             
             
 
