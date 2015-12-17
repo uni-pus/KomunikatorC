@@ -14,7 +14,7 @@ namespace Server
     class Program
     {
 
-        static public List<Socket> handlerList = new List<Socket>();
+        static public List<SocketWithNick> handlerList = new List<SocketWithNick>();
 
         // State object for reading client data asynchronously
         public class StateObject
@@ -120,11 +120,12 @@ namespace Server
                 // Retrieve the state object and the handler socket
                 // from the asynchronous state object.
                 StateObject state = (StateObject)ar.AsyncState;
-                Socket handler = state.workSocket;
+                SocketWithNick handler = new SocketWithNick();
+                handler.socket = state.workSocket;
                 handlerList.Add(handler);
                 // Read data from the client socket. 
                 try {
-                    int bytesRead = handler.EndReceive(ar);
+                    int bytesRead = handler.socket.EndReceive(ar);
                     Messages data = MessageGenerator.dekoduj(state.buffer);
                     data.stempelCzasu();
                     switch (data.komenda)
@@ -133,13 +134,22 @@ namespace Server
                             // dopisac metode sprawdzajaca haslo
                             Console.WriteLine("user: {0} zalogowany", data.from);
                             data.body = "OK";
-                            Send(handler, data);
+                            Send(handler.socket, data);
                             break;
                         case Komendy.Help:
                             break;
                         case Komendy.Logout:
                             break;
                         case Komendy.TextMessage:
+                            bool istnieje = false;
+                            foreach(SocketWithNick odbiorca in handlerList)
+                            {
+                                if(odbiorca.nickname == data.to)
+                                {
+                                    istnieje = true;
+                                    Send(odbiorca.socket, data);
+                                }
+                            }
                             break;
                         default:
                             break;

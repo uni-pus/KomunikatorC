@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AsynchronousClient.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="OknoKomunikatora.xaml.cs">
       <DependentUpon>OknoKomunikatora.xaml</DependentUpon>
     </Compile>
