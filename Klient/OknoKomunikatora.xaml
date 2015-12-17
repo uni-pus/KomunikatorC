@@ -11,7 +11,7 @@
         <Button x:Name="butLogout" Content="Wyloguj" HorizontalAlignment="Left" Margin="10,534,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="butHelp" Content="Help" HorizontalAlignment="Left" Margin="94,534,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBox x:Name="txtBoxOknoRozmowy" Height="418" Margin="110,10,10,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-        <Button x:Name="butSend" Content="Wyślij" HorizontalAlignment="Left" Margin="10,491,0,0" VerticalAlignment="Top" Width="370"/>
+        <Button x:Name="butSend" Content="Wyślij" HorizontalAlignment="Left" Margin="10,491,0,0" VerticalAlignment="Top" Width="370" Click="butSend_Click"/>
         <TextBox x:Name="txtBoxOknoNowejWiadomosci" HorizontalAlignment="Left" Height="53" Margin="10,433,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="370"/>
         <Button x:Name="butUserFind" Content="Button" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBox x:Name="txtBoxUserName" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="85"/>

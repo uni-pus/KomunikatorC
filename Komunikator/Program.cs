@@ -14,8 +14,9 @@ namespace Server
     class Program
     {
 
-        static public List<SocketWithNick> handlerList = new List<SocketWithNick>();
-
+        static public List<SocketWithNick> handlerList;// = new List<SocketWithNick>();
+        static public Socket sSocket;
+        static byte[] byteData = new byte[1024];
         // State object for reading client data asynchronously
         public class StateObject
         {
@@ -33,6 +34,7 @@ namespace Server
         {
             public static int Main(String[] args)
             {
+                handlerList = new List<SocketWithNick>();
                 StartListening();
                 return 0;
             }
@@ -62,55 +64,45 @@ namespace Server
                 - Piwo ?
                 - Tak, piwo.
                */
-                Socket listener = new Socket(AddressFamily.InterNetwork,
-                SocketType.Stream, ProtocolType.Tcp);
+                sSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
                 // Bind the socket to the local endpoint and listen for incoming connections.
                 try
                 {
-                    listener.Bind(localEndPoint);
-                    listener.Listen(100);
-
-                    while (true)
-                    {
-                        // Set the event to nonsignaled state.
-                        allDone.Reset();
-
-                        // Start an asynchronous socket to listen for connections.
-                        Console.WriteLine("Waiting for a connection...");
-                        listener.BeginAccept(
-                            new AsyncCallback(AcceptCallback),
-                            listener);
-
-                        // Wait until a connection is made before continuing.
-                        allDone.WaitOne();
-                    }
-
+                    sSocket.Bind(localEndPoint);
+                    sSocket.Listen(100);
+                    // Start an asynchronous socket to listen for connections.
+                    Console.WriteLine("Waiting for a connection...");
+                    sSocket.BeginAccept(
+                        new AsyncCallback(AcceptCallback),
+                        null
+                        );
+                    // Wait until a connection is made before continuing.
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.ToString());
                 }
 
-                Console.WriteLine("\nPress ENTER to continue...");
-                Console.Read();
+                //Console.WriteLine("\nPress ENTER to continue...");
+                //Console.Read();
 
             }
 
             public static void AcceptCallback(IAsyncResult ar)
             {
                 // Signal the main thread to continue.
-                allDone.Set();
+                //allDone.Set();
 
                 // Get the socket that handles the client request.
-                Socket listener = (Socket)ar.AsyncState;
-                Socket handler = listener.EndAccept(ar);
+                //Socket listener = (Socket)ar.AsyncState;
+                Socket handler = sSocket.EndAccept(ar);
 
                 // Create the state object.
                 StateObject state = new StateObject();
-                state.workSocket = handler;
-                handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
-                    new AsyncCallback(ReadCallback), state);
+                //state.workSocket = handler;
+                handler.BeginReceive(byteData, 0, byteData.Length, 0,
+                    new AsyncCallback(ReadCallback), handler);
             }
 
             public static void ReadCallback(IAsyncResult ar)
@@ -119,22 +111,25 @@ namespace Server
 
                 // Retrieve the state object and the handler socket
                 // from the asynchronous state object.
-                StateObject state = (StateObject)ar.AsyncState;
-                SocketWithNick handler = new SocketWithNick();
-                handler.socket = state.workSocket;
-                handlerList.Add(handler);
+                Socket handler = (Socket)ar.AsyncState;
+                handler.EndReceive(ar);
+                //SocketWithNick handler = new SocketWithNick();
+                //handler.socket = state.workSocket;
+                //handlerList.Add(handler);
+                Messages msg = MessageGenerator.dekoduj(byteData);
                 // Read data from the client socket. 
                 try {
-                    int bytesRead = handler.socket.EndReceive(ar);
-                    Messages data = MessageGenerator.dekoduj(state.buffer);
-                    data.stempelCzasu();
-                    switch (data.komenda)
+                    //int bytesRead = handler.socket.EndReceive(ar);
+                    //Messages data = MessageGenerator.dekoduj(state.buffer);
+                    msg.stempelCzasu();
+                    switch (msg.komenda)
                     {
                         case Komendy.Login:
+                            handlerList.Add(new SocketWithNick() { socket = handler, nickname = msg.from });
                             // dopisac metode sprawdzajaca haslo
-                            Console.WriteLine("user: {0} zalogowany", data.from);
-                            data.body = "OK";
-                            Send(handler.socket, data);
+                            Console.WriteLine("user: {0} zalogowany", msg.from);
+                            msg.body = "OK";
+                            Send(handler, msg);
                             break;
                         case Komendy.Help:
                             break;
@@ -142,52 +137,33 @@ namespace Server
                             break;
                         case Komendy.TextMessage:
                             bool istnieje = false;
+                            Console.WriteLine("user: {0} wysłał wiadomość do usera {1}", msg.from, msg.to);
                             foreach(SocketWithNick odbiorca in handlerList)
                             {
-                                if(odbiorca.nickname == data.to)
+                                if(odbiorca.nickname == msg.to)
                                 {
                                     istnieje = true;
-                                    Send(odbiorca.socket, data);
+                                    Send(odbiorca.socket, msg);
+                                    //wyslac potwierdzenie do nadawcy
                                 }
                             }
+                            //if(!istnieje)
+                              //wyslac informacje do nadawcy o braku mozliwosci wyslania wiadomosci  
                             break;
                         default:
                             break;
                     }
-                    if (bytesRead > 0)
-                    {
-                        /*
-                        // There  might be more data, so store the data received so far.
-                        state.sb.Append(Encoding.ASCII.GetString(
-                            state.buffer, 0, bytesRead));
 
-                        // Check for end-of-file tag. If it is not there, read 
-                        // more data.
-                        content = state.sb.ToString();
-                        if (content.IndexOf("<EOF>") > -1)
-                        {
-                            // All the data has been read from the 
-                            // client. Display it on the console.
-                            Console.WriteLine("Read {0} bytes from socket. \n Data : {1}",
-                                content.Length, content);
-                            // Echo the data back to the client.
-                            Send(handler, content);
-                        }
-                        else
-                        {
-                            // Not all data received. Get more.
-                            handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
-                            new AsyncCallback(ReadCallback), state);
-                        }
-                        */
-                    }
                 } catch (Exception ex)
                 {
                     Console.WriteLine("Rozłączono klienta");
                    // handlerList.Remove(Socket);
                 }
 
-                
+                if(msg.komenda != Komendy.Logout)
+                {
+                    handler.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(ReadCallback), handler);
+                }
             }
 
             private static void Send(Socket handler, Messages data)
@@ -200,6 +176,20 @@ namespace Server
                     new AsyncCallback(SendCallback), handler);
             }
 
+            public static void SendCallback(IAsyncResult ar)
+            {
+                try
+                {
+                    Socket client = (Socket)ar.AsyncState;
+
+                    client.EndSend(ar);
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show(ex.Message, "");
+                }
+            }
+            /*
             private static void SendCallback(IAsyncResult ar)
             {
                 try
@@ -212,16 +202,17 @@ namespace Server
                     Console.WriteLine("Sent {0} bytes to client.", bytesSent);
 
                     handler.Shutdown(SocketShutdown.Both);
-                    handler.Close();
+                  //  handler.Close();
 
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.ToString());
                 }
-            }
+            }*/
         }
     }
+    
 }
 
 
