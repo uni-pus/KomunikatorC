@@ -25,6 +25,9 @@ namespace Klient
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Socket clientSocket;
+        public string strName;
+
         Config cfg = Config.Instance;
         //private static Socket client;
         private const int port = 8888;
@@ -35,36 +38,89 @@ namespace Klient
             InitializeComponent();
         }
 
+        private void testButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
         private void zalogujbutton_Click(object sender, RoutedEventArgs e)
         {
-            cfg.nickName = loginTextBox.Text;
-            AsynClient.StartClient();
-
-            Messages msbox = new Messages(cfg.nickName, "haslo", Komendy.Login);
-
-            AsynClient.Send(cfg.client, msbox);
-            AsynClient.sendDone.WaitOne();
-            AsynClient.Receive(cfg.client);
-            AsynClient.receiveDone.WaitOne();
-            if(AsynClient.response2.komenda==Komendy.Login && AsynClient.response2.body=="OK")
+            strName = loginTextBox.Text;
+            try
             {
-                this.Visibility = Visibility.Hidden;
-                OknoKomunikatora noweOkno = new OknoKomunikatora();
-                noweOkno.Visibility = Visibility.Visible;
+
+                string[] lines = {"","" };// = System.IO.File.ReadAllLines(@"IpConfiguration.txt");
+                lines[0] = "127.0.0.1";
+                lines[1] = "8888";
+
+                clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+                IPAddress ipAddress = IPAddress.Parse(lines[0]);
+                //Server is listening on port 1000
+                IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, int.Parse(lines[1]));
+
+
+                //Connect to the server
+                clientSocket.BeginConnect(ipEndPoint, new AsyncCallback(OnConnect), null);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "SGSclient");
             }
         }
 
-        /// <summary>
-        /// Klasa do wyrzucenia
-        /// </summary>
-        /// <param name="sender"></param>
-        private void testButton_Click(object sender, RoutedEventArgs e)
+
+
+
+        private void OnConnect(IAsyncResult ar)
         {
-            Messages wiadomos = new Messages(cfg.nickName, "tresc", Komendy.TextMessage);
-            byte[] wiadomoscBajty = MessageGenerator.koduj(wiadomos);
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                try
+                {
+                    clientSocket.EndConnect(ar);
+
+                    //We are connected so we login into the server
+
+                    byte[] b = MessageGenerator.koduj(new Messages(strName, "haslo", Komendy.Login));
+
+
+                        //Send the message to the server
+                        clientSocket.BeginSend(b, 0, b.Length, SocketFlags.None, new AsyncCallback(OnSend), null);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "SGSclient");
+                }
+            }));
         }
 
+        private void OnSend(IAsyncResult ar)
+        {
+            this.Dispatcher.Invoke((Action)(() =>
+            {
+                try
+                {
+                    clientSocket.EndSend(ar);
+
+                    //strName = userName.Text;
+
+                    OknoKomunikatora clientForm = new OknoKomunikatora(clientSocket, strName);
+                    this.Hide();
+                    clientForm.ShowDialog();
 
 
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "SGSclient");
+                }
+            }));
+        }
     }
 }
+    
+

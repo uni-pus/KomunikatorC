@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Klient"
         mc:Ignorable="d"
-        Title="OknoKomunikatora" Height="600" Width="400">
+        Title="OknoKomunikatora" Height="600" Width="400" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid Margin="0,0,2,0">
         <Label x:Name="labelcoffee" Content="may I please have a cup of hot coffee?" HorizontalAlignment="Left" Margin="174,530,0,0" VerticalAlignment="Top" Width="216"/>
         <Button x:Name="butLogout" Content="Wyloguj" HorizontalAlignment="Left" Margin="10,534,0,0" VerticalAlignment="Top" Width="75"/>
