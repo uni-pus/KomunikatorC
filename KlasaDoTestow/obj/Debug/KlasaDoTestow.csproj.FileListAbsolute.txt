@@ -1,8 +1,0 @@
-C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\KlasaDoTestow\bin\Debug\KlasaDoTestow.exe.config
-C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\KlasaDoTestow\bin\Debug\KlasaDoTestow.exe
-C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\KlasaDoTestow\bin\Debug\KlasaDoTestow.pdb
-C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\KlasaDoTestow\bin\Debug\Messages.dll
-C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\KlasaDoTestow\bin\Debug\Messages.pdb
-C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\KlasaDoTestow\obj\Debug\KlasaDoTestow.csprojResolveAssemblyReference.cache
-C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\KlasaDoTestow\obj\Debug\KlasaDoTestow.exe
-C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\KlasaDoTestow\obj\Debug\KlasaDoTestow.pdb
