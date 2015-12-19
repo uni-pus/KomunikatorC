@@ -38,11 +38,12 @@ namespace TCPServer
         MessageConverter msgConverterObj = new MessageConverter();
 
         byte[] byteData = new byte[1024];
+        ConnectToRS RS;
 
         public MainWindow()
         {
             Cfg cfg = Cfg.Instance;
-            ConnectToRS RS = new ConnectToRS();
+            RS = new ConnectToRS();
             RS.ConnecToServer(new MessageModelRS()
             {
                 ClientName = "",
@@ -132,6 +133,12 @@ namespace TCPServer
                 switch (msgReceived.SenderCommand)
                 {
                     case Command.Login:
+
+                        RS.ConnecToServer(new MessageModelRS()
+                        {
+                            ClientName = msgReceived.SenderName,
+                            ClientPass = msgReceived.SenderMessage
+                        });
 
                         MessageModel msg = new MessageModel()
                         {

@@ -120,11 +120,12 @@ namespace RS
                         //list of clients
                         if (true) // dopisać funkcję sprawdzającą haslo 
                         {
-                            clientList.Add(new ClientModel()
-                            {
-                                socket = clientSocket,
-                                strName = clientSocket.GetHashCode().ToString()// msgReceived.SenderName
-                            });
+                            // to chyba niepotrzebne ;)
+//                            clientList.Add(new ClientModel()
+ //                           {
+  //                              socket = clientSocket,
+   //                             strName = clientSocket.GetHashCode().ToString()// msgReceived.SenderName
+    //                        });
 
                             clientSocket.BeginSend(message, 0, message.Length, SocketFlags.None,
                                  new AsyncCallback(OnSend), clientSocket);

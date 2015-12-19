@@ -94,7 +94,7 @@ namespace TCPClient
 
                           SenderCommand = Command.Login,
                           SenderName = userName.Text,
-                          SenderMessage = null,
+                          SenderMessage = userPass.Text,
                           Reciever = null
 
                       });
