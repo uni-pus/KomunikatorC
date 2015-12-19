@@ -16,7 +16,7 @@ namespace TCPServer
     class ConnectToRS
     {
         public Socket clientSocket;
-        private byte[] byteData = new byte[1024];
+        private byte[] byteData = new byte[2048];
         MessageConverterRS msgConverterObj = new MessageConverterRS();
         MessageModelRS msgModel;
 
@@ -38,7 +38,7 @@ namespace TCPServer
                 //Connect to the server
                 clientSocket.BeginConnect(ipEndPoint, new AsyncCallback(OnConnect), null);
 
-                byteData = new byte[1024];
+                byteData = new byte[2048];
                 //Start listening to the data asynchronously
                 clientSocket.BeginReceive(byteData,
                                            0,
@@ -100,7 +100,7 @@ namespace TCPServer
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "SGSserver");
+                    MessageBox.Show(ex.Message, "User 6");
                 }
     //        }));
         }
@@ -115,21 +115,25 @@ namespace TCPServer
 
                     MessageModelRS msgReceived = msgConverterObj.toMessage(byteData);
 
-
-                    if (msgReceived.SenderCommand == Command.LoginServer)
-                    {
-                    Cfg cfg = Cfg.Instance;
+                Cfg cfg = Cfg.Instance;
+                if (msgReceived.SenderCommand == Command.LoginServer)
+                {
+                    
                     cfg.Port = msgReceived.OtherData;
 
-//                    string port = msgReceived.OtherData;
-                        //ClientWindow clientForm = new ClientWindow(clientSocket, strName);
-                        //this.Hide();
-                        //clientForm.ShowDialog();
+                    //                    string port = msgReceived.OtherData;
+                    //ClientWindow clientForm = new ClientWindow(clientSocket, strName);
+                    //this.Hide();
+                    //clientForm.ShowDialog();
 
-                        //Close();
-                    }
+                    //Close();
+                }
+                else if (msgReceived.SenderCommand == Command.Login)
+                {
+                    cfg.listaZadan.Enqueue(msgReceived);
+                }
 
-                    byteData = new byte[1024];
+                    byteData = new byte[2048];
 
                     clientSocket.BeginReceive(byteData,
                                               0,

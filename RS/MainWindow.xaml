@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+        Title="RS Server" Height="350" Width="525" Loaded="Window_Loaded" Background="DarkKhaki">
     <Grid>
         <TextBox x:Name="messageTextBox" HorizontalAlignment="Left" Height="226" Margin="43,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="410"/>
     </Grid>

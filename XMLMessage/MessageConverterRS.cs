@@ -19,6 +19,9 @@ namespace XMLMessage
             {
                 XmlDocument doc = new XmlDocument();
                 xml = Encoding.UTF8.GetString(data);
+                if (xml.IndexOf("</message>") < 0)
+                    xml = xml.Replace("</messa", "</message>");
+                //xml = xml
                 xml = xml.Trim().Substring(0, xml.IndexOf(@"</message>") + 10);
                 doc.LoadXml(xml);
 

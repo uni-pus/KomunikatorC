@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XMLMessage;
+using XMLMessage.Models;
 
 namespace TCPServer
 {
     public sealed class Cfg
     {
-        private string port="";
+        public Queue<MessageModelRS> listaZadan;// = new Queue<ConnectToRS>(); 
+        private string port;
         private static Cfg m_oInstance = null;
         private static readonly object m_oPadLock = new object();
         
@@ -26,7 +29,7 @@ namespace TCPServer
                 }
             }
         }
-
+       // public 
         public string Port
         {
             get
@@ -42,7 +45,8 @@ namespace TCPServer
 
         private Cfg()
         {
-            
+            listaZadan = new Queue<MessageModelRS>();
+            port = "";
         }
     }
 }

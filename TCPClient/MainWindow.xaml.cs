@@ -31,7 +31,7 @@ namespace TCPClient
     {
         public Socket clientSocket;
         public string strName;
-        private byte[] byteData = new byte[1024];
+        private byte[] byteData = new byte[2048];
 
         //convert from byte to MessageModel or otherwise
         MessageConverter msgConverterObj = new MessageConverter();
@@ -62,7 +62,7 @@ namespace TCPClient
                 //Connect to the server
                 clientSocket.BeginConnect(ipEndPoint, new AsyncCallback(OnConnect), null);
 
-                byteData = new byte[1024];
+                byteData = new byte[2048];
                 //Start listening to the data asynchronously
                 clientSocket.BeginReceive(byteData,
                                            0,
@@ -139,7 +139,7 @@ namespace TCPClient
                     MessageModel msgReceived = msgConverterObj.toMessage(byteData);
 
 
-                    if (msgReceived.SenderMessage == "OK")
+                    if (msgReceived.SenderMessage == true.ToString())
                     {
                         ClientWindow clientForm = new ClientWindow(clientSocket, strName);
                         this.Hide();
@@ -148,7 +148,7 @@ namespace TCPClient
                         Close();
                     }
 
-                    byteData = new byte[1024];
+                    byteData = new byte[2048];
 
                     clientSocket.BeginReceive(byteData,
                                               0,

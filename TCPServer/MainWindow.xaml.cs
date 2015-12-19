@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using XMLMessage;
 using XMLMessage.Models;
+using System.Threading;
 
 namespace TCPServer
 {
@@ -37,7 +38,7 @@ namespace TCPServer
         //convert from byte to MessageModel or otherwise
         MessageConverter msgConverterObj = new MessageConverter();
 
-        byte[] byteData = new byte[1024];
+        byte[] byteData = new byte[2048];
         ConnectToRS RS;
 
         public MainWindow()
@@ -59,10 +60,44 @@ namespace TCPServer
             port = Convert.ToInt32(cfg.Port);
 
             clientList = new List<ClientModel>();
+            Thread t1 = new Thread(kolejka);
+            t1.Start();
+
             InitializeComponent();
         }
 
+        private void kolejka() {
+            Cfg cfg = Cfg.Instance;
+            for (;;)
+            {
+                if (cfg.listaZadan.Count > 0)
+                {
+                    Socket socketClient;
+                    MessageModelRS msg = cfg.listaZadan.Dequeue();
+                    if (msg.SenderCommand == Command.Login)
+                    {
+                        byteData = msgConverterObj.ToByte(new MessageModel()
+                        {
+                            SenderMessage = msg.OtherData
+                        });
 
+                        foreach (ClientModel cl in clientList)
+                        {
+                            if (cl.strName == msg.ClientName)
+                            {
+                                socketClient = cl.socket;
+                                socketClient.BeginSend(byteData, 0, byteData.Length, SocketFlags.None,
+                                        new AsyncCallback(OnSend), socketClient);
+                                break;
+                            }
+
+
+                            
+                        }
+                    }
+                }
+            }
+        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -93,7 +128,7 @@ namespace TCPServer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "SGSserverTCP");
+                MessageBox.Show(ex.Message, "User 7 TCP");
             }
 
         }
@@ -112,7 +147,7 @@ namespace TCPServer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "SGSserverTCP");
+                MessageBox.Show(ex.Message, "User 8 TCP");
             }
         }
 
@@ -134,11 +169,7 @@ namespace TCPServer
                 {
                     case Command.Login:
 
-                        RS.ConnecToServer(new MessageModelRS()
-                        {
-                            ClientName = msgReceived.SenderName,
-                            ClientPass = msgReceived.SenderMessage
-                        });
+
 
                         MessageModel msg = new MessageModel()
                         {
@@ -157,9 +188,14 @@ namespace TCPServer
                                 strName = msgReceived.SenderName
                             });
 
-                            clientSocket.BeginSend(message, 0, message.Length, SocketFlags.None,
-                                 new AsyncCallback(OnSend), clientSocket);
+                            //clientSocket.BeginSend(message, 0, message.Length, SocketFlags.None,
+                             //    new AsyncCallback(OnSend), clientSocket);
                         }
+                        RS.ConnecToServer(new MessageModelRS()
+                        {
+                            ClientName = msgReceived.SenderName,
+                            ClientPass = msgReceived.SenderMessage
+                        });
                         break;
 
                     case Command.Logout:
@@ -246,7 +282,7 @@ namespace TCPServer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "SGSserverTCP");
+                MessageBox.Show(ex.Message, "User TCP");
             }
         }
 
@@ -260,7 +296,7 @@ namespace TCPServer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "SGSserverTCP");
+                MessageBox.Show(ex.Message, "User TCP");
             }
         }
 

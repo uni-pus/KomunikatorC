@@ -30,10 +30,11 @@ namespace RS
         //The main socket on which the server listens to the clients
         Socket serverSocket;
         MessageConverterRS msgConverterObj = new MessageConverterRS();
-        byte[] byteData = new byte[1024];
-
+        byte[] byteData = new byte[2048];
+        UserDataBase dbUser;
         public MainWindow()
         {
+            dbUser = new UserDataBase();
             dbserver = new ServerDataBase();
             clientList = new List<ClientModel>();
             InitializeComponent();
@@ -68,7 +69,7 @@ namespace RS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "SGSserverTCP");
+                MessageBox.Show(ex.Message, "User 9 TCP");
             }
 
         }
@@ -87,14 +88,14 @@ namespace RS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "SGSserverTCP");
+                MessageBox.Show(ex.Message, "User 10 TCP");
             }
         }
 
         private void OnReceive(IAsyncResult ar)
         {
-            try
-            {
+           // try
+          //  {
                 Socket clientSocket = (Socket)ar.AsyncState;
                 clientSocket.EndReceive(ar);
 
@@ -108,18 +109,21 @@ namespace RS
                 switch (msgReceived.SenderCommand)
                 {
                     case Command.Login:
-
+                        bool passOK;
+                        bool isLogin;
+                        passOK = dbUser.query(msgReceived.ClientName, msgReceived.ClientPass, out isLogin);
                         MessageModelRS msg = new MessageModelRS()
                         {
                             SenderCommand = Command.Login,
-                            //SenderMessage = "OK"
+                            ClientName = msgReceived.ClientName,
+                            OtherData = passOK.ToString()
                         };
                        // msg.timeStamp();
                         message = msgConverterObj.ToByte(msg);
                         //When a user logs in to the server then we add her to our
                         //list of clients
-                        if (true) // dopisać funkcję sprawdzającą haslo 
-                        {
+          //              if (true) // dopisać funkcję sprawdzającą haslo 
+            //            {
                             // to chyba niepotrzebne ;)
 //                            clientList.Add(new ClientModel()
  //                           {
@@ -129,7 +133,7 @@ namespace RS
 
                             clientSocket.BeginSend(message, 0, message.Length, SocketFlags.None,
                                  new AsyncCallback(OnSend), clientSocket);
-                        }
+                 //       }
                         break;
                     case Command.LoginServer:
                         string port = dbserver.WolnyPort();
@@ -223,11 +227,11 @@ namespace RS
                     clientSocket.BeginReceive(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnReceive), clientSocket);
 
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "SGSserverTCP");
-            }
+           // }
+          //  catch (Exception ex)
+         //   {
+        //        MessageBox.Show(ex.Message, "User 11 TCP");
+        //    }
         }
 
         public void OnSend(IAsyncResult ar)
@@ -240,7 +244,7 @@ namespace RS
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "SGSserverTCP");
+                MessageBox.Show(ex.Message, "User 12 TCP");
             }
         }
     }

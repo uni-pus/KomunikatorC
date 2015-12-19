@@ -24,7 +24,7 @@ namespace TCPClient
     {
         public Socket clientSocket;
         public string strName;
-        private byte[] byteData = new byte[1024];
+        private byte[] byteData = new byte[2048];
 
         //convert from byte to MessageModel or otherwise
         MessageConverter msgConverterObj = new MessageConverter();
@@ -39,12 +39,12 @@ namespace TCPClient
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Title = "SGSclientTCP: " + strName;
+            this.Title = "User TCP: " + strName;
 
             //The user has logged into the system so we now request the server to send
             //the names of all users who are in the chat room
 
-            byteData = new byte[1024];
+            byteData = new byte[2048];
             //Start listening to the data asynchronously
             clientSocket.BeginReceive(byteData,
                                        0,
@@ -56,7 +56,7 @@ namespace TCPClient
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to leave the chat room?", "SGSclient: " + strName,
+            if (MessageBox.Show("Czy chcesz zakończyć pracę?", "User : " + strName,
                 MessageBoxButton.YesNo) == MessageBoxResult.No)
             {
                 
@@ -84,7 +84,7 @@ namespace TCPClient
             { }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "SGSclientTCP: " + strName);
+                MessageBox.Show(ex.Message, "User TCP: " + strName);
             }
         }
 
@@ -110,7 +110,7 @@ namespace TCPClient
             }
             catch (Exception)
             {
-                MessageBox.Show("Unable to send message to the server.", "SGSclientTCP: " + strName);
+                MessageBox.Show("Error 1: Błąd wysłania wiadomości do serwera.", "User TCP: " + strName);
             }
         }
 
@@ -126,7 +126,7 @@ namespace TCPClient
                      { }
                      catch (Exception ex)
                      {
-                         MessageBox.Show(ex.Message, "SGSclientTCP: " + strName);
+                         MessageBox.Show(ex.Message, "User TCP: " + strName);
                      }
                  }));
         }
@@ -146,7 +146,7 @@ namespace TCPClient
                    
                 txtChatBox.Text +=msgReceived.SenderName+": "+ msgReceived.SenderMessage+"\r\n";
 
-                byteData = new byte[1024];
+                byteData = new byte[2048];
 
                 clientSocket.BeginReceive(byteData,
                                           0,
@@ -160,7 +160,7 @@ namespace TCPClient
             { }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "SGSclientTCP: " + strName);
+                MessageBox.Show(ex.Message, "User TCP: " + strName);
             }
                 }));
         }

@@ -44,13 +44,17 @@ namespace RS
         {
             usersList = new List<User>();
         }
-        public bool query(string nickname, string password)
+        public bool query(string nickname, string password, out bool isLogin_)
         {
+            isLogin_ = false;
             foreach (User u in usersList)
             {
-                if (u.nick==nickname)
+                if (u.nick == nickname)
                     if (u.pass == password)
+                    {
+                        isLogin_ = u.isLogin;
                         return true;
+                    }
                     else
                         return false;
             }
