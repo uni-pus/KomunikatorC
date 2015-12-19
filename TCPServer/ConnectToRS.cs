@@ -116,8 +116,12 @@ namespace TCPServer
                     MessageModelRS msgReceived = msgConverterObj.toMessage(byteData);
 
 
-                    if (msgReceived.OtherData == "OK")
+                    if (msgReceived.SenderCommand == Command.LoginServer)
                     {
+                    Cfg cfg = Cfg.Instance;
+                    cfg.Port = msgReceived.OtherData;
+
+//                    string port = msgReceived.OtherData;
                         //ClientWindow clientForm = new ClientWindow(clientSocket, strName);
                         //this.Hide();
                         //clientForm.ShowDialog();

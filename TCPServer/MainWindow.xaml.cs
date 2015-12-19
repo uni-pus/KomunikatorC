@@ -21,9 +21,10 @@ using XMLMessage.Models;
 namespace TCPServer
 {
     // static class cl
-    //{
+   // {
     //   static public List<ClientModel> clientList;// = new List<ClientModel>();
     // }
+
 
     public partial class MainWindow : Window
     {
@@ -32,7 +33,7 @@ namespace TCPServer
 
         //The main socket on which the server listens to the clients
         Socket serverSocket;
-        string port;
+        int port;
         //convert from byte to MessageModel or otherwise
         MessageConverter msgConverterObj = new MessageConverter();
 
@@ -40,16 +41,22 @@ namespace TCPServer
 
         public MainWindow()
         {
+            Cfg cfg = Cfg.Instance;
             ConnectToRS RS = new ConnectToRS();
             RS.ConnecToServer(new MessageModelRS()
             {
-                ClientName = "Nick",
-                ClientPass = "haslo",
+                ClientName = "",
+                ClientPass = "",
                 OtherData = "",
                 SenderCommand = Command.LoginServer,
                 Time = DateTime.Now
             }
             );
+            while (cfg.Port == "") {
+                System.Threading.Thread.Sleep(500);
+            }
+            port = Convert.ToInt32(cfg.Port);
+
             clientList = new List<ClientModel>();
             InitializeComponent();
         }
@@ -72,7 +79,7 @@ namespace TCPServer
                                           ProtocolType.Tcp);
 
                 //Assign the any IP of the machine and listen on port number 1000
-                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, 8888);
+                IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Any, port);
 
                 //Bind and listen on the given address
                 serverSocket.Bind(ipEndPoint);
@@ -248,6 +255,11 @@ namespace TCPServer
             {
                 MessageBox.Show(ex.Message, "SGSserverTCP");
             }
+        }
+
+        private void messageTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 

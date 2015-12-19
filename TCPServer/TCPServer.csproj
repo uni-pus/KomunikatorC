@@ -79,6 +79,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Cfg.cs" />
     <Compile Include="ConnectToRS.cs" />
     <Compile Include="Models\ClientModel.cs" />
     <Compile Include="MainWindow.xaml.cs">

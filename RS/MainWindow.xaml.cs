@@ -131,7 +131,15 @@ namespace RS
                         }
                         break;
                     case Command.LoginServer:
+                        string port = dbserver.WolnyPort();
+                        MessageModelRS msgRS = new MessageModelRS()
+                        {
+                            SenderCommand = Command.LoginServer,
+                            OtherData = port
+                        };
+                        byteData = msgConverterObj.ToByte(msgRS);
 
+                        clientSocket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(OnSend), clientSocket);
                         break;
                     case Command.Logout:
 
