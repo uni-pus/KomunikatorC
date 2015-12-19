@@ -15,14 +15,17 @@ namespace RS
 
     class ServerDataBase
     {
-        int wolnePorty = 8888;
+        List<Server> serverList;
+        int wolnePorty;// = 8888;
         public ServerDataBase()
         {
-
+            serverList = new List<Server>();
+            wolnePorty = 8888;
         }
         public string WolnyPort()
         {
             int temp = wolnePorty--;
+            serverList.Add(new Server() { port=temp.ToString() });
             return temp.ToString();
         }
     }

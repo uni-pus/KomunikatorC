@@ -26,6 +26,7 @@ namespace RS
     {
         //The collection of all clients logged into the room (an array of type ClientInfo)
         List<ClientModel> clientList;
+        ServerDataBase dbserver;
         //The main socket on which the server listens to the clients
         Socket serverSocket;
         MessageConverterRS msgConverterObj = new MessageConverterRS();
@@ -33,6 +34,7 @@ namespace RS
 
         public MainWindow()
         {
+            dbserver = new ServerDataBase();
             clientList = new List<ClientModel>();
             InitializeComponent();
         }
@@ -128,7 +130,9 @@ namespace RS
                                  new AsyncCallback(OnSend), clientSocket);
                         }
                         break;
+                    case Command.LoginServer:
 
+                        break;
                     case Command.Logout:
 
                         //When a user wants to log out of the server then we search for her 

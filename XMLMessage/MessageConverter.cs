@@ -17,6 +17,7 @@ namespace XMLMessage
     public enum Command
     {
         Login,      //Log into the server
+        LoginServer,
         Logout,     //Logout of the server
         Message,    //Send a text message to all the chat clients
         Null        //No command

@@ -32,7 +32,7 @@ namespace TCPServer
 
         //The main socket on which the server listens to the clients
         Socket serverSocket;
-
+        string port;
         //convert from byte to MessageModel or otherwise
         MessageConverter msgConverterObj = new MessageConverter();
 
@@ -46,7 +46,7 @@ namespace TCPServer
                 ClientName = "Nick",
                 ClientPass = "haslo",
                 OtherData = "",
-                SenderCommand = Command.Login,
+                SenderCommand = Command.LoginServer,
                 Time = DateTime.Now
             }
             );
