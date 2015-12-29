@@ -6,3 +6,11 @@ C:\Users\IEUser\Documents\Visual Studio 2015\Projects\TCP1\TestowanieRozwiazan\b
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\TCP1\TestowanieRozwiazan\obj\Debug\TestowanieRozwiazan.csprojResolveAssemblyReference.cache
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\TCP1\TestowanieRozwiazan\obj\Debug\TestowanieRozwiazan.exe
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\TCP1\TestowanieRozwiazan\obj\Debug\TestowanieRozwiazan.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TestowanieRozwiazan\bin\Debug\TestowanieRozwiazan.exe.config
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TestowanieRozwiazan\bin\Debug\TestowanieRozwiazan.exe
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TestowanieRozwiazan\bin\Debug\TestowanieRozwiazan.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TestowanieRozwiazan\bin\Debug\XMLmsg.dll
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TestowanieRozwiazan\bin\Debug\XMLmsg.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TestowanieRozwiazan\obj\Debug\TestowanieRozwiazan.csprojResolveAssemblyReference.cache
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TestowanieRozwiazan\obj\Debug\TestowanieRozwiazan.exe
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TestowanieRozwiazan\obj\Debug\TestowanieRozwiazan.pdb

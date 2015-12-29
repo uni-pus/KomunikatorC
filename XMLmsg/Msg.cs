@@ -16,7 +16,7 @@ namespace XMLmsg
         LoginServer,    // Zalogowanie Serwera FLS do RS
         Logout,         // Wylogowanie Usera z serwerów
         Message,        // Wysłanie wiadomości przez Usera do innego Usera
-        MessageTransfer,// przesłanie Msg między serwerami
+        MessageTransfer,// przesłanie Msg między serweramiii
         Null
     }
 

@@ -3,3 +3,8 @@ C:\Users\IEUser\Documents\Visual Studio 2015\Projects\TCP1\XMLmsg\bin\Debug\XMLm
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\TCP1\XMLmsg\obj\Debug\XMLmsg.csprojResolveAssemblyReference.cache
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\TCP1\XMLmsg\obj\Debug\XMLmsg.dll
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\TCP1\XMLmsg\obj\Debug\XMLmsg.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\XMLmsg\bin\Debug\XMLmsg.dll
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\XMLmsg\bin\Debug\XMLmsg.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\XMLmsg\obj\Debug\XMLmsg.csprojResolveAssemblyReference.cache
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\XMLmsg\obj\Debug\XMLmsg.dll
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\XMLmsg\obj\Debug\XMLmsg.pdb

@@ -12,3 +12,8 @@ C:\Users\Paw\Documents\GitHub\komunikator\KomunikatorC\TCP1\obj\Debug\TCP1.pdb
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TCP1\bin\Debug\TCP1.exe.config
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TCP1\obj\Debug\TCP1.exe
 C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TCP1\obj\Debug\TCP1.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TCP1\bin\Debug\TCP1.exe
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TCP1\bin\Debug\TCP1.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TCP1\bin\Debug\XMLmsg.dll
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TCP1\bin\Debug\XMLmsg.pdb
+C:\Users\IEUser\Documents\Visual Studio 2015\Projects\komunikator2\komunikator\TCP1\obj\Debug\TCP1.csprojResolveAssemblyReference.cache
